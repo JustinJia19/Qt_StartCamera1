@@ -34,3 +34,6 @@ DEPENDPATH += $$PWD/../../OpenCV/opencv/build/x64/vc15/lib
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    haarcascade_frontalface_alt.xml

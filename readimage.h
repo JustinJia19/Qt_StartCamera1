@@ -3,23 +3,29 @@
 
 #include <QObject>
 #include <opencv2/opencv.hpp>
-using namespace cv;
 
 class ReadImage : public QObject
 {
     Q_OBJECT
+
 public:
     explicit ReadImage(QObject *parent = nullptr);
-    VideoCapture cap; // 操控摄像头的对象
-    CascadeClassifier face_cascade; // 人脸识别分类器
-    void readImage();
-    void detectFaces(cv::Mat& frame);
 
 signals:
-    void readImageDone(Mat frame); // 读取完成之后发出信号
+    void readImageDone(const cv::Mat& frame);
+    void frameReady(const cv::Mat& frame);
+
+public slots:
+    void readImage();
+    void provideLatestFrame();
 
 public:
-    bool isEnable = false; // 控制人脸识别的标志
+    void detectFaces(cv::Mat &frame);
+
+    cv::VideoCapture cap; // 摄像头捕获对象
+    cv::Mat latestFrame;  // 最新的帧数据
+    bool isEnable;        // 是否启用人脸识别
+    cv::CascadeClassifier face_cascade; // Haar 级联分类器
 };
 
 #endif // READIMAGE_H

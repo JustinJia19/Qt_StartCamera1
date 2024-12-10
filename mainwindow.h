@@ -21,10 +21,17 @@ public:
     ReadImage* readImage;
     QThread* thread;
     QTimer* timer;
+    QString dirPath;
     void closeEvent(QCloseEvent *event);
 
 private slots:
     void on_DetectBtn_clicked();
+    void on_ChooseBtn_clicked();
+    void on_shotBtn_clicked();
+    void saveScreenshot(const cv::Mat& frame); // 新增槽函数用于保存截图
+
+signals:
+    void requestFrame();
 
 private:
     Ui::MainWindow *ui;
