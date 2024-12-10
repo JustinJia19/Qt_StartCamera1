@@ -78,3 +78,15 @@ void MainWindow::closeEvent(QCloseEvent *event)//手动关闭子线程
 }
 
 
+
+void MainWindow::on_DetectBtn_clicked()
+{
+    readImage->isEnable = !readImage->isEnable; // 切换人脸识别开关
+
+    if (readImage->isEnable) {
+        qDebug() << "Face detection enabled.";
+    } else {
+        qDebug() << "Face detection disabled.";
+    }
+}
+

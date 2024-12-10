@@ -31,3 +31,6 @@ else:unix: LIBS += -L$$PWD/../../OpenCV/opencv/build/x64/vc15/lib/ -lopencv_worl
 
 INCLUDEPATH += $$PWD/../../OpenCV/opencv/build/include
 DEPENDPATH += $$PWD/../../OpenCV/opencv/build/x64/vc15/lib
+
+RESOURCES += \
+    resources.qrc

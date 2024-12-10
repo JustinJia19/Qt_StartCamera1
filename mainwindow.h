@@ -23,6 +23,9 @@ public:
     QTimer* timer;
     void closeEvent(QCloseEvent *event);
 
+private slots:
+    void on_DetectBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
