@@ -1,11 +1,22 @@
 #include "readimage.h"
 #include <QDebug>
 #include <QDir>
+#include <QFileDialog>
 #include <opencv2/opencv.hpp>
+#include <opencv2/objdetect.hpp>
+#include <QResource>
 
 ReadImage::ReadImage(QObject *parent)
     : QObject(parent), isEnable(false) // 初始化 isEnable 为 false
 {
+
+    QString faceCascadeFileName = QFileDialog::getOpenFileName(
+        nullptr,tr("选择关联器"),"", // 当前目录或默认目录
+        tr("Images (*.xml)") // 文件过滤器
+        );
+    //QString faceCascadeFileName = "D:\\software\\Qt\\OpenCVdemo3\\haarcascade_frontalface_alt.xml";
+    std::string faceCascadeFileNameStd = faceCascadeFileName.toStdString();
+
     if (!cap.open(0)) { // 尝试打开默认摄像头 (index 0)
         qCritical() << "Failed to open camera!";
     } else {
@@ -13,7 +24,7 @@ ReadImage::ReadImage(QObject *parent)
     }
 
     // 加载 Haar 级联分类器文件
-    if (!face_cascade.load("D:/software/Qt/OpenCVdemo3/haarcascade_frontalface_alt.xml")) {
+    if (!face_cascade.load(faceCascadeFileNameStd)) {
         qCritical() << "Error loading cascade file from resource";
     } else {
         qDebug() << "Cascade file loaded successfully.";
@@ -31,6 +42,7 @@ void ReadImage::detectFaces(cv::Mat& frame) {
     face_cascade.detectMultiScale(gray, faces, 1.1, 3, 0, cv::Size(30, 30));
 
     qDebug() << "Detected" << faces.size() << "faces.";
+    emit facesDetected(faces.size());
 
     // 在检测到的人脸上绘制矩形框
     for (const auto& rect : faces) {

@@ -9,15 +9,19 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    childwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     readimage.cpp
 
 HEADERS += \
+    childwindow.h \
     mainwindow.h \
+    opencv.hpp \
     readimage.h
 
 FORMS += \
+    childwindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.
@@ -33,7 +37,7 @@ INCLUDEPATH += $$PWD/../../OpenCV/opencv/build/include
 DEPENDPATH += $$PWD/../../OpenCV/opencv/build/x64/vc15/lib
 
 RESOURCES += \
-    resources.qrc
+    xml.qrc
 
 DISTFILES += \
     haarcascade_frontalface_alt.xml

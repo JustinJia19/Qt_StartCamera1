@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
-    <height>480</height>
+    <width>570</width>
+    <height>583</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>40</y>
+      <x>60</x>
+      <y>100</y>
       <width>450</width>
       <height>300</height>
      </rect>
@@ -38,25 +38,28 @@
     <property name="text">
      <string>Show Image</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QPushButton" name="DetectBtn">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>360</y>
+      <y>420</y>
       <width>151</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>开启/关闭人脸检测</string>
+     <string>开启/关闭检测</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ChooseBtn">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>360</y>
+      <x>210</x>
+      <y>420</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -68,8 +71,8 @@
    <widget class="QPushButton" name="shotBtn">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>360</y>
+      <x>390</x>
+      <y>420</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -78,13 +81,44 @@
      <string>截图</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="ChildBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>470</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>图像处理</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="text_label">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>451</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>566</width>
+     <width>570</width>
      <height>25</height>
     </rect>
    </property>

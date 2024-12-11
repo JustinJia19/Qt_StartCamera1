@@ -14,6 +14,7 @@ public:
 signals:
     void readImageDone(const cv::Mat& frame);
     void frameReady(const cv::Mat& frame);
+    void facesDetected(int count);
 
 public slots:
     void readImage();

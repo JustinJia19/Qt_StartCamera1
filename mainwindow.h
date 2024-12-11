@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "readimage.h"
+#include "childwindow.h"
 #include <opencv2/opencv.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -29,11 +30,14 @@ private slots:
     void on_ChooseBtn_clicked();
     void on_shotBtn_clicked();
     void saveScreenshot(const cv::Mat& frame); // 新增槽函数用于保存截图
+    void updateFaceCountLabel(int count);
+    void on_ChildBtn_clicked();
 
 signals:
     void requestFrame();
 
 private:
     Ui::MainWindow *ui;
+    ChildWindow   *childwindow_ui  = nullptr;
 };
 #endif // MAINWINDOW_H

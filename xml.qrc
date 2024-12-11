@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new">
+        <file>haarcascade_frontalface_alt.xml</file>
+        <file>xml/haarcascade_frontalface_alt.xml</file>
+    </qresource>
+</RCC>

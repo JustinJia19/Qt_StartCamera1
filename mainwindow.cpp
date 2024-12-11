@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "readimage.h"
+#include "childwindow.h"
 #include <QThread>
 #include <QTimer>
 #include <qDebug>
@@ -40,6 +41,10 @@ QImage MatToQImage(const cv::Mat& mat)
     }
 }
 
+void MainWindow::updateFaceCountLabel(int count) {
+    ui->text_label->setText(QString("Detected %1 face(s).").arg(count));
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -75,6 +80,9 @@ MainWindow::MainWindow(QWidget *parent)
     // 连接 frameReady 信号到保存截图的槽
     connect(readImage, &ReadImage::frameReady, this, &MainWindow::saveScreenshot);
 
+    //连接 ReadImage 的 facesDetected 信号到更新 QLabel 的槽函数
+    connect(readImage, &ReadImage::facesDetected, this, &MainWindow::updateFaceCountLabel);
+
     // 初始化截图保存目录为空字符串
     dirPath = "";
 }
@@ -85,6 +93,10 @@ MainWindow::~MainWindow()
     thread->quit();
     thread->wait();
     delete readImage;
+
+    if (childwindow_ui) { // 确保子窗口也被正确清理
+        delete childwindow_ui;
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -154,3 +166,14 @@ void MainWindow::saveScreenshot(const cv::Mat& frame)
         qWarning() << "Failed to save screenshot!";
     }
 }
+
+void MainWindow::on_ChildBtn_clicked()
+{
+    if (!childwindow_ui)
+    {
+        childwindow_ui = new ChildWindow(this);
+        childwindow_ui->show();
+    }
+
+}
+
